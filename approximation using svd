@@ -1,0 +1,15 @@
+import numpy as np
+a=np.random.rand(1000,1000)
+u,s,v=np.linalg.svd(a)
+print(np.shape((abs(s)>0).nonzero())[1])
+print(np.shape(u))
+print(np.shape(s))
+print(s[0])     #first largest number
+print(s[999])   #last smallest number
+
+# taking approximation
+approxa=np.zeros_like(a)
+sigma=np.zeros((a.shape[0],a.shape[1]))
+sigma[:a.shape[0],:a.shape[1]]=np.diag(s)
+approxa=u.dot(sigma.dot(v))
+print(approxa)
